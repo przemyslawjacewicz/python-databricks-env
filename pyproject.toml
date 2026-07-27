@@ -1,0 +1,15 @@
+[project]
+name = "python-databricks-env"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "delta-spark==4.0.0",
+    "pyspark==4.0.0",
+    "python-dotenv>=1.2.2"
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.0",
+]
