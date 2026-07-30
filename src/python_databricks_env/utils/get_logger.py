@@ -3,12 +3,11 @@ import sys
 
 
 def get_logger(
-        name: str,  # todo: check if name is needed
+        name: str,
         level: int = logging.INFO,
         fmt: str = "%(asctime)s [%(levelname)s] %(name)s.%(funcName)s:%(lineno)d - %(message)s"
-        # todo: check what is the default format
 ) -> logging.Logger:
-    logger = logging.getLogger()
+    logger = logging.getLogger(name)
     logger.setLevel(level)
     logger.propagate = False
 
