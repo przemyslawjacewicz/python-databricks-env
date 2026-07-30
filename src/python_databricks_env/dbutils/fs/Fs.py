@@ -7,19 +7,22 @@ from python_databricks_env.dbutils.fs.FileInfo import FileInfo
 class Fs:
 
     @staticmethod
-    def cp(from_: str, to: str, recurse: bool = False) -> bool:
-        from_path = Path(from_)
+    def cp(source: str, dest: str, recurse: bool = False) -> bool:
+        from_path = Path(source)
+
+        if not from_path.exists():
+            raise FileNotFoundError(source)
 
         if from_path.is_file():
             from_path.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy(from_, to)
+            shutil.copy(source, dest)
             return True
 
         if from_path.is_dir():
             if not recurse:
                 raise Exception("Cannot copy directory unless recurse is set to true")
 
-            shutil.copytree(from_, to, dirs_exist_ok=True)
+            shutil.copytree(source, dest, dirs_exist_ok=True)
             return True
 
         return False
