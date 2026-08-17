@@ -131,6 +131,19 @@ __pypackages__/
 celerybeat-schedule
 celerybeat.pid
 
+# Redis
+*.rdb
+*.aof
+*.pid
+
+# RabbitMQ
+mnesia/
+rabbitmq/
+rabbitmq-data/
+
+# ActiveMQ
+activemq-data/
+
 # SageMath parsed files
 *.sage.py
 
@@ -187,6 +200,8 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file. However, if you prefer, 
 #  you could uncomment the following to ignore the entire vscode folder
 # .vscode/
+# Temporary file for partial code execution
+tempCodeRunnerFile.py
 
 # Ruff stuff:
 .ruff_cache/
@@ -205,3 +220,6 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Streamlit
+.streamlit/secrets.toml
