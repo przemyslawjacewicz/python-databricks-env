@@ -1,5 +1,4 @@
 class Widgets:
-
     def __init__(self, widgets=None):
         if widgets is None:
             widgets = {}

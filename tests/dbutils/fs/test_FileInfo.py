@@ -1,12 +1,9 @@
 import time
 
 from python_databricks_env.dbutils.fs.FileInfo import FileInfo
-from utils import get_or_create_spark
-
-spark = get_or_create_spark()
 
 
-def test_FileInfo_dir(tmp_path):
+def test_FileInfo_dir(spark, tmp_path):
     start = time.time()
     time.sleep(1)
 
@@ -26,7 +23,7 @@ def test_FileInfo_dir(tmp_path):
     assert not fi.isFile()
 
 
-def test_FileInfo_file(tmp_path):
+def test_FileInfo_file(spark, tmp_path):
     start = time.time()
     time.sleep(1)
 

@@ -1,5 +1,2 @@
-from pyspark.sql import DataFrame
-
-
-def display(df: DataFrame):
+def display(arg):
     pass

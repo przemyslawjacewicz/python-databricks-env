@@ -8,7 +8,6 @@ from python_databricks_env.utils.fs.resolve import resolve
 
 
 class FileInfo:
-
     def __init__(self, spark: SparkSession, path: str, dbfs: Callable[[SparkSession], bool] = is_dbfs):
         self._path = Path(path)
 
