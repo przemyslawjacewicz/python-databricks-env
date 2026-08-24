@@ -12,7 +12,7 @@ def test_FileInfo_dir(spark, tmp_path):
 
     time.sleep(1)
 
-    fi = FileInfo(spark, str(dir), lambda _: False)
+    fi = FileInfo(str(dir))
 
     assert fi.path == str(dir)
     assert fi.name == "dir"
@@ -34,7 +34,7 @@ def test_FileInfo_file(spark, tmp_path):
 
     time.sleep(1)
 
-    fi = FileInfo(spark, str(file), lambda _: False)
+    fi = FileInfo(str(file))
 
     assert fi.path == str(file)
     assert fi.name == "file"

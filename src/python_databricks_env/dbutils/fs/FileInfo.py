@@ -1,17 +1,13 @@
-from collections.abc import Callable
 from pathlib import Path
 
-from pyspark.sql import SparkSession
-
-from python_databricks_env.utils.fs.is_dbfs import is_dbfs
 from python_databricks_env.utils.fs.resolve import resolve
 
 
 class FileInfo:
-    def __init__(self, spark: SparkSession, path: str, dbfs: Callable[[SparkSession], bool] = is_dbfs):
+    def __init__(self, path: str):
         self._path = Path(path)
 
-        self.path = resolve(spark, path, dbfs=dbfs)
+        self.path = resolve(path)
         self.name = self._path.name
         self.size = self._path.stat().st_size if not self._path.is_dir() else 0
         self.modificationTime = self._path.stat().st_mtime

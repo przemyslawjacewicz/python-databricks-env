@@ -2,23 +2,24 @@ import shutil
 from pathlib import Path
 
 from python_databricks_env.dbutils.fs.FileInfo import FileInfo
+from python_databricks_env.dbutils.fs.MountInfo import MountInfo
 
 
 class Fs:
 
     @staticmethod
     def cp(source: str, dest: str, recurse: bool = False) -> bool:
-        from_path = Path(source)
+        source_path = Path(source)
 
-        if not from_path.exists():
+        if not source_path.exists():
             raise FileNotFoundError(source)
 
-        if from_path.is_file():
-            from_path.parent.mkdir(parents=True, exist_ok=True)
+        if source_path.is_file():
+            source_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(source, dest)
             return True
 
-        if from_path.is_dir():
+        if source_path.is_dir():
             if not recurse:
                 raise Exception("Cannot copy directory unless recurse is set to true")
 
@@ -28,17 +29,17 @@ class Fs:
         return False
 
     @staticmethod
-    def head(file: str, maxBytes: int = 65536) -> str:
+    def head(file: str, max_bytes: int = 65536) -> str:
         with open(file, 'rb') as f:
-            return f.read(maxBytes).decode('utf-8', errors='ignore')
+            return f.read(max_bytes).decode('utf-8', errors='ignore')
 
     @staticmethod
-    def ls(dir: str) -> list[FileInfo]:
-        dir_path = Path(dir)
-        if dir_path.is_file():
-            return FileInfo.from_path(dir_path)
+    def ls(path: str) -> list[FileInfo]:
+        path_path = Path(path)
+        if path_path.is_file():
+            return [FileInfo(str(path_path))]
         else:
-            return [FileInfo.from_path(p) for p in dir_path.iterdir()]
+            return [FileInfo(str(p)) for p in path_path.iterdir()]
 
     @staticmethod
     def mkdirs(dir: str) -> bool:
@@ -46,7 +47,21 @@ class Fs:
         return True
 
     @staticmethod
-    def mv(from_: str, to: str, recurse: bool = False) -> bool:
+    def mount(
+            source: str,
+            mount_point: str,
+            encryption_type: str = '',
+            owner: str = None,
+            extra_configs: dict[str, str] = None
+    ) -> bool:
+        pass
+
+    @staticmethod
+    def mounts() -> list[MountInfo]:
+        pass
+
+    @staticmethod
+    def mv(source: str, dest: str, recurse: bool = False) -> bool:
         pass
 
     @staticmethod
@@ -80,3 +95,6 @@ class Fs:
             return True
 
         return False
+
+    def unmount(mount_point: str) -> bool:
+        pass
