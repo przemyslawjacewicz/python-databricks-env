@@ -1,7 +1,7 @@
-from python_databricks_env.dbutils.Dbutils import Dbutils
+from python_databricks_env.dbutils.DbUtils import DbUtils
 from python_databricks_env.utils.get_logger import get_logger
 
-dbutils = Dbutils()
+dbutils = DbUtils()
 
 logger = get_logger(__name__)
 

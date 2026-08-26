@@ -1,6 +1,6 @@
-from python_databricks_env.dbutils.Dbutils import Dbutils
+from python_databricks_env.dbutils.DbUtils import DbUtils
 
-dbutils = Dbutils(widgets={"first": "1", "second": "2"})
+dbutils = DbUtils(widgets={"first": "1", "second": "2"})
 
 dbutils.fs.cp(source="/path/to/dir", dest="/path/to/dest")
 
